@@ -51,46 +51,51 @@ console.log('array of employee data: ',  employees );
 function calculateIndividualEmployeeBonus( employee ) {  
   // check console log to make sure function is running
   // loop through employees array
-  console.log("In function");
-  for (let i = 0; i < employees.length; i++) {
-    let employee = employees[i];
-    console.log(employee);
-  }
+  console.log("In function", employee);
+
   // starting logic for the bonus rules
-  
   let bonusPercentage = 0;
   let maxBonus = .13;
 
-  if (employees.reviewRating <= 2 ){
-    bonusPercentage = 0
-  } else if (employees.reviewRating === 3){
+  if (employee.reviewRating === 3){
     bonusPercentage += .04
-  } else if (employees.reviewRating === 4){
+  } else if (employee.reviewRating === 4){
     bonusPercentage += .06
-  } else if (employees.reviewRating === 5){
+  } else if (employee.reviewRating === 5){
     bonusPercentage += .10
-  } 
-  if (employees.employeeNumber < 10000 && employees.employeeNumber > 999){ 
+  } else {
+    bonusPercentage = 0
+  }
+
+  if (employee.employeeNumber.length === 4){ 
     bonusPercentage += .05
   }
-  if (employees.annualSalary > 65000){
+  if (employee.annualSalary > 65000){
     bonusPercentage -= .01;
   }
   if (bonusPercentage > maxBonus){
     bonusPercentage = .13;
   }
+  if (bonusPercentage < 0){
+    bonusPercentage = 0
+  }
 
   // return new object with bonus results
-  let totalCompensation = employees.annualSalary + (employees.annualSalary * bonusPercentage);
-  let totalBonus = Math.round(employees.annualSalary * bonusPercentage);
   
+  let totalBonus = Math.round(employee.annualSalary * bonusPercentage);
+  let totalCompensation = employee.annualSalary + totalBonus;
+ 
   return {
-    name: employees.name,
+    name: employee.name,
     bonusPercentage: bonusPercentage,
     totalCompensation: totalCompensation,
     totalBonus: totalBonus,
   
   };
 }
+for (const employee of employees) {
+  const bonusResult = calculateIndividualEmployeeBonus( employee );
+  console.log("bonus results for:", bonusResult);
+ }
 
-calculateIndividualEmployeeBonus();
+
