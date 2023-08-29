@@ -51,7 +51,7 @@ console.log('array of employee data: ',  employees );
 function calculateIndividualEmployeeBonus( employee ) {  
   // check console log to make sure function is running
   // loop through employees array
-  console.log("In function", employee);
+ 
 
   // starting logic for the bonus rules
   let bonusPercentage = 0;
@@ -83,7 +83,7 @@ function calculateIndividualEmployeeBonus( employee ) {
   // return new object with bonus results
   
   let totalBonus = Math.round(employee.annualSalary * bonusPercentage);
-  let totalCompensation = employee.annualSalary + totalBonus;
+  let totalCompensation = Number(employee.annualSalary) + totalBonus;
  
   return {
     name: employee.name,
